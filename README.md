@@ -35,6 +35,7 @@ Chọn Compare & Pull Request.
 Gửi Pull Request về repo chính để Leader kiểm tra và gộp vào main.
 
 Cập Nhật Code Mới Nhất Từ Repo Chính
+
 Bước 1: Thêm remote của repo chính
 git remote add upstream https://github.com/giabao2605/Nhom2_DATN.git
 
