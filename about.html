@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About Us - VIEBOOK</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <!-- SVG symbols copied from index.html -->
+      <symbol id="search" xmlns="http://www.w3.org/2000/symbolsvg" viewBox="0 0 24 24">
+        <path fill="currentColor" fill-rule="evenodd"
+          d="M11.5 2.75a8.75 8.75 0 1 0 0 17.5a8.75 8.75 0 0 0 0-17.5M1.25 11.5c0-5.66 4.59-10.25 10.25-10.25S21.75 5.84 21.75 11.5c0 2.56-.939 4.902-2.491 6.698l3.271 3.272a.75.75 0 1 1-1.06 1.06l-3.272-3.271A10.21 10.21 0 0 1 11.5 21.75c-5.66 0-10.25-4.59-10.25-10.25"
+          clip-rule="evenodd" />
+      </symbol>
+      <!-- Additional SVG symbols here (user, heart, cart, etc.) -->
+      <!-- ... -->
+    </svg>
+
+    <div id="preloader" class="preloader-container">
+      <div class="book">
+        <div class="inner">
+          <div class="left"></div>
+          <div class="middle"></div>
+          <div class="right"></div>
+        </div>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="search-popup">
+      <div class="search-popup-container">
+        <form role="search" method="get" class="search-form" action="">
+          <input type="search" id="search-form" class="search-field" placeholder="Nhập từ khoá và nhấn Enter" value=""
+            name="s" />
+          <button type="submit" class="search-submit"><svg class="search">
+              <use xlink:href="#search"></use>
+            </svg></button>
+        </form>
+
+        <h5 class="cat-list-title">Danh mục nổi bật</h5>
+
+        <ul class="cat-list">
+          <li class="cat-list-item">
+            <a href="#" title="Romance">Lãng mạn</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="#" title="Thriller">Kịch tính</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="#" title="Sci-fi">Khoa học viễn tưởng</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="#" title="Cooking">Nấu ăn</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="#" title="Health">Sức khoẻ</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="#" title="Lifestyle">Phong cách sống</a>
+          </li>
+          <li class="cat-list-item">
+            <a href="#" title="Fiction">Tiểu thuyết</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <header id="header" class="site-header">
+      <nav id="header-nav" class="navbar navbar-expand-lg py-3">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">
+            <img src="images/main-logo.png" class="logo">
+          </a>
+          <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <svg class="navbar-icon">
+              <use xlink:href="#navbar-icon"></use>
+            </svg>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+            <div class="offcanvas-header px-4 pb-0">
+              <a class="navbar-brand" href="index.html">
+                <img src="images/main-logo.png" class="logo">
+              </a>
+              <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"
+                data-bs-target="#bdNavbar"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul id="navbar"
+                class="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-4 active" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="shop.html">Shop</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="blog.html">Blogs</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                    aria-expanded="false">Pages</a>
+                  <ul class="dropdown-menu animate slide border">
+                    <li>
+                      <a href="about.html" class="dropdown-item fw-light">About</a>
+                    </li>
+                    <li>
+                      <a href="shop.html" class="dropdown-item fw-light">Shop</a>
+                    </li>
+                    <li>
+                      <a href="single-product.html" class="dropdown-item fw-light">Single Product</a>
+                    </li>
+                    <li>
+                      <a href="cart.html" class="dropdown-item fw-light">Cart</a>
+                    </li>
+                    <li>
+                      <a href="checkout.html" class="dropdown-item fw-light">Checkout</a>
+                    </li>
+                    <li>
+                      <a href="blog.html" class="dropdown-item fw-light">Blog</a>
+                    </li>
+                    <li>
+                      <a href="single-post.html" class="dropdown-item fw-light">Single Post</a>
+                    </li>
+                    <li>
+                      <a href="contact.html" class="dropdown-item fw-light">Contact</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link me-4" href="contact.html">Contact</a>
+                </li>
+              </ul>
+              <div class="user-items d-flex">
+                <ul class="d-flex justify-content-end list-unstyled mb-0">
+                  <li class="search-item pe-3">
+                    <a href="#" class="search-button">
+                      <svg class="search">
+                        <use xlink:href="#search"></use>
+                      </svg>
+                    </a>
+                  </li>
+                  <!-- User icon and cart links should go here -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero position-relative d-flex align-items-center justify-content-center text-center" style="background: linear-gradient(rgba(30,30,60,0.7),rgba(30,30,60,0.7)), url('images/banner-image-bg.jpg') center/cover no-repeat; min-height: 350px;">
+      <div class="container position-relative z-2">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <div class="d-flex align-items-center justify-content-center mb-2 animate__animated animate__fadeInDown">
+            <svg width="48" height="48" fill="currentColor" class="me-2 text-primary animate__animated animate__bounceIn" style="animation-delay:0.2s;">
+              <use xlink:href="#book"></use>
+            </svg>
+            <h1 class="display-4 fw-bold text-white mb-0">About VIEBOOK</h1>
+          </div>
+          <p class="lead text-white-50 mb-0 animate__animated animate__fadeInUp" style="animation-delay:0.4s;">Where stories come alive and readers belong.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="padding-large bg-white">
+      <div class="container">
+        <div class="row align-items-center flex-lg-row flex-column-reverse">
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <h2 class="mb-4 fw-bold">Our Story</h2>
+            <blockquote class="fst-italic text-primary border-start border-3 ps-3 mb-3">“A room without books is like a body without a soul.”</blockquote>
+            <p class="mb-3">Founded in 2015, VIEBOOK began as a cozy corner for book lovers. Today, we are a vibrant community hub for readers, writers, and dreamers.</p>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><span class="badge bg-primary me-2">1</span> Curated collections for every taste</li>
+              <li class="mb-2"><span class="badge bg-primary me-2">2</span> Events & workshops for all ages</li>
+              <li class="mb-2"><span class="badge bg-primary me-2">3</span> A passionate team of book lovers</li>
+            </ul>
+            <p>We believe in the power of stories to connect, inspire, and transform lives. Join us as we turn every page together!</p>
+          </div>
+          <div class="col-lg-6 text-center">
+            <img src="images/banner-image.png" alt="About Us" class="img-fluid rounded-4 shadow-lg animate__animated animate__fadeInRight">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Core Values Section -->
+    <section class="bg-light padding-large">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-12">
+            <h2 class="mb-3 fw-bold">Our Core Values</h2>
+            <p class="w-75 mx-auto text-secondary">At VIEBOOK, our values shape every story we share and every connection we make.</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="card border-0 h-100 p-4 bg-white rounded-4 shadow-sm hover-shadow text-center animate__animated animate__fadeInUp">
+              <div class="icon-box mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: #e3f0ff; border-radius: 50%;">
+                <svg width="32" height="32" fill="currentColor" class="text-primary">
+                  <use xlink:href="#book"></use>
+                </svg>
+              </div>
+              <h4 class="card-title mb-2">Quality</h4>
+              <p class="card-text">Every book is handpicked for its literary excellence and impact.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="card border-0 h-100 p-4 bg-white rounded-4 shadow-sm hover-shadow text-center animate__animated animate__fadeInUp" style="animation-delay:0.1s;">
+              <div class="icon-box mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: #e3f0ff; border-radius: 50%;">
+                <svg width="32" height="32" fill="currentColor" class="text-primary">
+                  <use xlink:href="#people"></use>
+                </svg>
+              </div>
+              <h4 class="card-title mb-2">Community</h4>
+              <p class="card-text">We foster a welcoming space for all who love to read, learn, and grow together.</p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mx-md-auto">
+            <div class="card border-0 h-100 p-4 bg-white rounded-4 shadow-sm hover-shadow text-center animate__animated animate__fadeInUp" style="animation-delay:0.2s;">
+              <div class="icon-box mb-3 mx-auto d-flex align-items-center justify-content-center" style="width: 70px; height: 70px; background: #e3f0ff; border-radius: 50%;">
+                <svg width="32" height="32" fill="currentColor" class="text-primary">
+                  <use xlink:href="#heart"></use>
+                </svg>
+              </div>
+              <h4 class="card-title mb-2">Passion</h4>
+              <p class="card-text">Our team is driven by a deep love for books and the joy of sharing them.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="padding-large bg-white">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-12">
+            <h2 class="mb-3 fw-bold">Meet Our Team</h2>
+            <p class="w-75 mx-auto text-secondary">The passionate people who bring VIEBOOK to life.</p>
+          </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-3 col-md-6">
+            <div class="card border-0 text-center p-4 rounded-4 shadow-sm team-card animate__animated animate__fadeInUp">
+              <img src="images/category1.jpg" class="card-img-top rounded-circle mx-auto mb-3 shadow" style="width:120px; height:120px; object-fit:cover;" alt="Jane Doe">
+              <div class="card-body">
+                <h5 class="card-title mb-1 fw-bold">Jane Doe</h5>
+                <p class="text-muted fs-6 mb-2">Founder & CEO</p>
+                <p class="card-text small">A lifelong book lover with a vision to create the perfect bookstore experience.</p>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#facebook"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#twitter"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#instagram"></use></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card border-0 text-center p-4 rounded-4 shadow-sm team-card animate__animated animate__fadeInUp" style="animation-delay:0.1s;">
+              <img src="images/category2.jpg" class="card-img-top rounded-circle mx-auto mb-3 shadow" style="width:120px; height:120px; object-fit:cover;" alt="John Smith">
+              <div class="card-body">
+                <h5 class="card-title mb-1 fw-bold">John Smith</h5>
+                <p class="text-muted fs-6 mb-2">Head Curator</p>
+                <p class="card-text small">With an eye for literary gems, John curates our collection with expertise and care.</p>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#facebook"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#twitter"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#instagram"></use></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card border-0 text-center p-4 rounded-4 shadow-sm team-card animate__animated animate__fadeInUp" style="animation-delay:0.2s;">
+              <img src="images/category3.jpg" class="card-img-top rounded-circle mx-auto mb-3 shadow" style="width:120px; height:120px; object-fit:cover;" alt="Emily Chen">
+              <div class="card-body">
+                <h5 class="card-title mb-1 fw-bold">Emily Chen</h5>
+                <p class="text-muted fs-6 mb-2">Community Manager</p>
+                <p class="card-text small">Creating spaces for readers to connect and share their literary journeys.</p>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#facebook"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#twitter"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#instagram"></use></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="card border-0 text-center p-4 rounded-4 shadow-sm team-card animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+              <img src="images/post-item1.jpg" class="card-img-top rounded-circle mx-auto mb-3 shadow" style="width:120px; height:120px; object-fit:cover;" alt="Michael Brown">
+              <div class="card-body">
+                <h5 class="card-title mb-1 fw-bold">Michael Brown</h5>
+                <p class="text-muted fs-6 mb-2">Customer Experience</p>
+                <p class="card-text small">Dedicated to ensuring every customer has a memorable bookstore experience.</p>
+                <div class="d-flex justify-content-center gap-2 mt-2">
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#facebook"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#twitter"></use></svg></a>
+                  <a href="#"><svg width="20" height="20"><use xlink:href="#instagram"></use></svg></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="customers-reviews" class="position-relative padding-large" style="background: linear-gradient(rgba(30,30,60,0.8),rgba(30,30,60,0.8)), url('images/banner-image-bg.jpg') center/cover no-repeat;">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col-12">
+            <h2 class="mb-3 text-white fw-bold">What Our Customers Say</h2>
+            <p class="w-75 mx-auto text-white-50">Don't just take our word for it – hear from our loyal readers.</p>
+          </div>
+        </div>
+        <div class="swiper testimonials-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="card position-relative text-left p-4 border-0 rounded-4 shadow-lg bg-white animate__animated animate__fadeInUp">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="images/category1.jpg" alt="Sarah Johnson" class="rounded-circle me-3" style="width:48px; height:48px; object-fit:cover;">
+                  <div>
+                    <h6 class="mb-0 fw-bold">Sarah Johnson</h6>
+                    <div class="rating text-warning">
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <blockquote class="fst-italic">"VIEBOOK has completely transformed my reading experience. Their curated collections have introduced me to authors I would have never discovered on my own. I'm grateful for this literary gem in our community!"</blockquote>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="card position-relative text-left p-4 border-0 rounded-4 shadow-lg bg-white animate__animated animate__fadeInUp">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="images/category2.jpg" alt="David Lee" class="rounded-circle me-3" style="width:48px; height:48px; object-fit:cover;">
+                  <div>
+                    <h6 class="mb-0 fw-bold">David Lee</h6>
+                    <div class="rating text-warning">
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <blockquote class="fst-italic">"As an avid reader, I'm always on the lookout for quality books, and VIEBOOK never disappoints. The staff's recommendations have been spot-on, and their community events bring together like-minded individuals who share my passion for literature."</blockquote>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="card position-relative text-left p-4 border-0 rounded-4 shadow-lg bg-white animate__animated animate__fadeInUp">
+                <div class="d-flex align-items-center mb-3">
+                  <img src="images/category3.jpg" alt="Maria Garcia" class="rounded-circle me-3" style="width:48px; height:48px; object-fit:cover;">
+                  <div>
+                    <h6 class="mb-0 fw-bold">Maria Garcia</h6>
+                    <div class="rating text-warning">
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                      <svg class="star star-fill"><use xlink:href="#star-fill"></use></svg>
+                    </div>
+                  </div>
+                </div>
+                <blockquote class="fst-italic">"I ordered several books from VIEBOOK's online store, and I was impressed by the quick delivery and careful packaging. The personalized note that came with my order made me feel valued as a customer. I'll definitely be shopping here again!"</blockquote>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer" class="padding-large">
+      <div class="container">
+        <div class="row">
+          <div class="footer-top-area">
+            <div class="row d-flex flex-wrap justify-content-between">
+              <div class="col-lg-3 col-sm-6 pb-3">
+                <div class="footer-menu">
+                  <img src="images/main-logo.png" alt="logo" class="img-fluid mb-2">
+                  <p>Nisi, purus vitae, ultrices nunc. Sit ac sit suscipit hendrerit. Gravida massa volutpat aenean odio
+                    erat nullam fringilla.</p>
+                  <div class="social-links">
+                    <ul class="d-flex list-unstyled">
+                      <li>
+                        <a href="#">
+                          <svg class="facebook">
+                            <use xlink:href="#facebook" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="instagram">
+                            <use xlink:href="#instagram" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="twitter">
+                            <use xlink:href="#twitter" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="linkedin">
+                            <use xlink:href="#linkedin" />
+                          </svg>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <svg class="youtube">
+                            <use xlink:href="#youtube" />
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2 col-sm-6 pb-3">
+                <div class="footer-menu text-capitalize">
+                  <h5 class="widget-title pb-2">Quick Links</h5>
+                  <ul class="menu-list list-unstyled text-capitalize">
+                    <li class="menu-item mb-1">
+                      <a href="#">Home</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">About</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">Shop</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">Blogs</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">Contact</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6 pb-3">
+                <div class="footer-menu text-capitalize">
+                  <h5 class="widget-title pb-2">Help & Info Help</h5>
+                  <ul class="menu-list list-unstyled">
+                    <li class="menu-item mb-1">
+                      <a href="#">Track Your Order</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">Returns Policies</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">Shipping + Delivery</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">Contact Us</a>
+                    </li>
+                    <li class="menu-item mb-1">
+                      <a href="#">Faqs</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-lg-3 col-sm-6 pb-3">
+                <div class="footer-menu contact-item">
+                  <h5 class="widget-title text-capitalize pb-2">Contact Us</h5>
+                  <p>Do you have any queries or suggestions? <a href="mailto:"
+                      class="text-decoration-underline">yourinfo@gmail.com</a></p>
+                  <p>If you need support? Just give us a call. <a href="#" class="text-decoration-underline">+55 111 222
+                      333 44</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <hr>
+    <div id="footer-bottom" class="mb-2">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between">
+          <div class="copyright">
+            <p>© Copyright 2025 VieBook.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" style="position:fixed;bottom:32px;right:32px;z-index:9999;display:none;background:#F86D72;color:#fff;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px rgba(0,0,0,0.15);font-size:2rem;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;">
+      ↑
+    </button>
+    <script>
+      // Back to Top functionality
+      const backToTopBtn = document.getElementById('backToTop');
+      window.addEventListener('scroll', function() {
+        if(window.scrollY > 300) backToTopBtn.style.display = 'flex';
+        else backToTopBtn.style.display = 'none';
+      });
+      backToTopBtn.onclick = () => window.scrollTo({top:0,behavior:'smooth'});
+    </script>
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+      .about-hero { min-height: 350px; }
+      .hover-shadow:hover { box-shadow: 0 8px 32px rgba(30,30,60,0.15)!important; transform: translateY(-4px) scale(1.03); transition: all 0.3s; }
+      .team-card { transition: box-shadow 0.3s, transform 0.3s; }
+      .team-card:hover { box-shadow: 0 8px 32px rgba(30,30,60,0.15)!important; transform: translateY(-4px) scale(1.03); }
+      .icon-box svg { filter: drop-shadow(0 2px 6px rgba(30,30,60,0.08)); }
+      .card { background: #fff; border-radius: 1.25rem; }
+      .card blockquote, .card, .card * { color: #000 !important; opacity: 1 !important; }
+      .btn, .btn-light, .btn-light:hover, .btn:active, .btn:focus { color: #000 !important; }
+      .card a, .card a:visited, .card a:active { color: #000 !important; }
+      .card h1, .card h2, .card h3, .card h4, .card h5, .card h6, .card p, .card span, .card li { color: #000 !important; }
+      .w-75.mx-auto.text-secondary, .w-75.mx-auto.text-white-50 { color: #555 !important; }
+      .about-hero .lead.text-white-50 { color: #fff !important; }
+      @media (max-width: 991px) {
+        .about-hero { min-height: 220px; }
+      }
+      /* Đẩy các cột footer sát copyright, giảm khoảng trắng */
+      footer {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      #footer-bottom {
+        margin-top: 0 !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+      }
+      #footer-bottom .container {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      #footer-bottom .copyright {
+        margin: 0 !important;
+        padding: 0 !important;
+        text-align: center;
+        width: 100%;
+      }
+      .footer .container {
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+      }
+    </style>
+    <script>
+      // SwiperJS for testimonials
+      new Swiper('.testimonials-swiper', {
+        loop: true,
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        speed: 800
+      });
+    </script>
+  </body>
+</html> 

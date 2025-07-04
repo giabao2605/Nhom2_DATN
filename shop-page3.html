@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - VieBook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .shop-hero {
+      background: linear-gradient(rgba(30,30,60,0.7),rgba(30,30,60,0.7)), url('images/banner-image-bg.jpg') center/cover no-repeat;
+      min-height: 220px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .shop-hero h1 { color: #fff; font-weight: 800; }
+    .shop-hero p { color: #fff; opacity: 0.85; }
+    .product-card {
+      border: none;
+      border-radius: 1.25rem;
+      box-shadow: 0 2px 16px rgba(30,30,60,0.07);
+      transition: box-shadow 0.3s, transform 0.3s;
+      background: #fff;
+    }
+    .product-card:hover {
+      box-shadow: 0 8px 32px rgba(30,30,60,0.15); transform: translateY(-4px) scale(1.03);
+    }
+    .product-card .card-title, .product-card .card-text, .product-card .price { color: #222 !important; }
+    .product-card .price { font-weight: bold; color: #F86D72 !important; }
+    .filter-bar label, .filter-bar select, .filter-bar input { color: #222 !important; }
+    .pagination-custom {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center the pagination horizontally */
+    align-items: center; /* Vertically align items */
+    margin: 20px 0; /* Add some spacing around the pagination */
+}
+
+.pagination-custom .page-item {
+    display: inline-flex; /* Ensure page items are inline */
+}
+
+.pagination-custom .page-link {
+    border: none;
+    border-radius: 50% !important;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.25rem;
+    color: #222;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(30,30,60,0.07);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    font-weight: 600;
+}
+
+.pagination-custom .page-link:hover {
+    background: #F86D72;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(248,109,114,0.15);
+}
+
+.pagination-custom .page-item.active .page-link {
+    background: #F86D72;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(248,109,114,0.15);
+}
+
+.pagination-custom .page-link:focus {
+    box-shadow: none;
+}
+
+.badge-sale {
+    background: #F86D72;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 991px) {
+    .shop-hero {
+        min-height: 120px;
+    }
+}
+    /* Đẩy các cột footer sát copyright, giảm khoảng trắng */
+    footer {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    #footer-bottom {
+      margin-top: 0 !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    #footer-bottom .container {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    #footer-bottom .copyright {
+      margin: 0 !important;
+      padding: 0 !important;
+      text-align: center;
+      width: 100%;
+    }
+    .footer .container {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    .pagination .page-number {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #000;
+}
+.pagination .page-number.active {
+    font-weight: bold;
+    color: #007bff; /* Example: blue color for active page */
+    background-color: #f0f0f0; /* Optional: background highlight */
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+  </style>
+</head>
+<body style="font-family: 'Nunito', sans-serif; background: #f8f8f8;">
+  <!-- Header (có thể copy từ index.html nếu muốn đồng bộ) -->
+  <header id="header" class="site-header">
+    <nav id="header-nav" class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/main-logo.png" class="logo" alt="VieBook logo">
+        </a>
+        <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+          <div class="offcanvas-header px-4 pb-0">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/main-logo.png" class="logo" alt="VieBook logo">
+            </a>
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul id="navbar" class="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
+              <li class="nav-item"><a class="nav-link me-4" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="about.html">About</a></li>
+              <li class="nav-item"><a class="nav-link me-4 active" href="shop.html">Shop</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="blog.html">Blogs</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="shop-hero mb-4 animate__animated animate__fadeInDown">
+    <div class="container text-center">
+      <h1 class="display-5 mb-2">Shop</h1>
+      <p class="lead mb-0">Khám phá kho sách đa dạng, chọn lựa dễ dàng!</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <div class="container mb-4 filter-bar animate__animated animate__fadeInUp">
+    <form class="row g-2 align-items-center justify-content-between bg-white p-3 rounded-3 shadow-sm">
+      <div class="col-md-4">
+        <label for="search" class="form-label mb-0">Tìm kiếm sách</label>
+        <input type="text" class="form-control" id="search" placeholder="Nhập tên sách, tác giả...">
+      </div>
+      <div class="col-md-3">
+        <label for="category" class="form-label mb-0">Thể loại</label>
+        <select class="form-select" id="category">
+          <option>Tất cả</option>
+          <option>Tiểu thuyết</option>
+          <option>Kinh doanh</option>
+          <option>Kỹ năng sống</option>
+          <option>Thiếu nhi</option>
+          <option>Khoa học</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="sort" class="form-label mb-0">Sắp xếp</label>
+        <select class="form-select" id="sort">
+          <option>Mới nhất</option>
+          <option>Bán chạy</option>
+          <option>Giá tăng dần</option>
+          <option>Giá giảm dần</option>
+        </select>
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Lọc</button>
+      </div>
+    </form>
+  </div>
+
+ <!-- Product List -->
+<div class="container mb-5">
+  <div class="row g-4">
+    <!-- Sản phẩm mẫu -->
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp">
+        <div class="position-absolute top-0 end-0 m-2"><span class="badge badge-sale">-20%</span></div>
+        <img src="images/product-item1.png" class="card-img-top rounded-4" alt="Book 1">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Đắc Nhân Tâm</h5>
+          <p class="card-text mb-2">Dale Carnegie</p>
+          <div class="mb-2">
+            <span class="price me-2">80.000đ</span>
+            <span class="text-decoration-line-through text-black-50">100.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.1s;">
+        <img src="images/product-item2.png" class="card-img-top rounded-4" alt="Book 2">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Nhà Giả Kim</h5>
+          <p class="card-text mb-2">Paulo Coelho</p>
+          <div class="mb-2">
+            <span class="price">120.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.2s;">
+        <img src="images/product-item3.png" class="card-img-top rounded-4" alt="Book 3">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Tuổi Trẻ Đáng Giá Bao Nhiêu</h5>
+          <p class="card-text mb-2">Rosie Nguyễn</p>
+          <div class="mb-2">
+            <span class="price">95.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.3s;">
+        <img src="images/product-item4.png" class="card-img-top rounded-4" alt="Book 4">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Dám Bị Ghét</h5>
+          <p class="card-text mb-2">Ichiro Kishimi</p>
+          <div class="mb-2">
+            <span class="price">110.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.4s;">
+        <img src="images/product-item5.png" class="card-img-top rounded-4" alt="Book 5">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Hài Hước Một Chút Thế Giới Sẽ Khác Đi</h5>
+          <p class="card-text mb-2">Nhiều tác giả</p>
+          <div class="mb-2">
+            <span class="price">85.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.5s;">
+        <div class="position-absolute top-0 end-0 m-2"><span class="badge badge-sale">-10%</span></div>
+        <img src="images/product-item6.png" class="card-img-top rounded-4" alt="Book 6">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Tư Duy Nhanh Và Chậm</h5>
+          <p class="card-text mb-2">Daniel Kahneman</p>
+          <div class="mb-2">
+            <span class="price me-2">135.000đ</span>
+            <span class="text-decoration-line-through text-black-50">150.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.6s;">
+        <img src="images/product-item7.png" class="card-img-top rounded-4" alt="Book 7">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Bí Mật Tư Duy Triệu Phú</h5>
+          <p class="card-text mb-2">T. Harv Eker</p>
+          <div class="mb-2">
+            <span class="price">105.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.7s;">
+        <img src="images/product-item8.png" class="card-img-top rounded-4" alt="Book 8">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Sức Mạnh Của Thói Quen</h5>
+          <p class="card-text mb-2">Charles Duhigg</p>
+          <div class="mb-2">
+            <span class="price">125.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.8s;">
+        <div class="position-absolute top-0 end-0 m-2"><span class="badge badge-sale">-15%</span></div>
+        <img src="images/product-item9.png" class="card-img-top rounded-4" alt="Book 9">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Đừng Lựa Chọn An Nhàn Khi Còn Trẻ</h5>
+          <p class="card-text mb-2">Cảnh Thiên</p>
+          <div class="mb-2">
+            <span class="price me-2">90.000đ</span>
+            <span class="text-decoration-line-through text-black-50">105.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.9s;">
+        <img src="images/product-item10.png" class="card-img-top rounded-4" alt="Book 10">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Homo Deus</h5>
+          <p class="card-text mb-2">Yuval Noah Harari</p>
+          <div class="mb-2">
+            <span class="price">145.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp">
+        <img src="images/product-item11.png" class="card-img-top rounded-4" alt="Book 11">
+        <div class="card-body">
+          <h5 class="card-title mb-1">Bí Quyết Thành Công Dành Cho Tuổi Trẻ</h5>
+          <p class="card-text mb-2">Adam Khoo</p>
+          <div class="mb-2">
+            <span class="price">100.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-3">
+      <div class="card product-card h-100 animate__animated animate__fadeInUp" style="animation-delay:0.1s;">
+        <img src="images/product-item12.png" class="card-img-top rounded-4" alt="Book 12">
+        <div class="card-body">
+          <h5 class="card-title mb-1">7 Thói Quen Hiệu Quả</h5>
+          <p class="card-text mb-2">Stephen R. Covey</p>
+          <div class="mb-2">
+            <span class="price">130.000đ</span>
+          </div>
+          <a href="#" class="btn btn-outline-primary w-100">Xem chi tiết</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pagination -->
+<div class="pagination-custom">
+    <div class="page-item">
+        <a href="shop.html" class="page-link">«</a>
+    </div>
+    <div class="page-item">
+        <a href="shop.html" class="page-link" data-page="1">1</a>
+    </div>
+    <div class="page-item">
+        <a href="shop-page2.html" class="page-link" data-page="2">2</a>
+    </div>
+    <div class="page-item">
+        <a href="shop-page3.html" class="page-link" data-page="3">3</a>
+    </div>
+    <div class="page-item">
+        <a href="shop-page3.html" class="page-link">»</a>
+    </div>
+</div>
+  </div>
+
+  <!-- Footer (có thể copy từ index.html nếu muốn đồng bộ) -->
+  <footer id="footer" class="py-4 bg-white mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="footer-top-area">
+          <div class="row d-flex flex-wrap justify-content-between">
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu">
+                <img src="images/main-logo.png" alt="logo" class="img-fluid mb-2">
+                <p>Kho tri thức đa dạng — nơi bạn tìm được những cuốn sách phù hợp với nhu cầu, sở thích, cũng như đam mê của chính mình.</p>
+                <div class="social-links">
+                  <ul class="d-flex list-unstyled">
+                    <li><a href="#"><svg class="facebook"><use xlink:href="#facebook" /></svg></a></li>
+                    <li><a href="#"><svg class="twitter"><use xlink:href="#twitter" /></svg></a></li>
+                    <li><a href="#"><svg class="linkedin"><use xlink:href="#linkedin" /></svg></a></li>
+                    <li><a href="#"><svg class="youtube"><use xlink:href="#youtube" /></svg></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-capitalize">
+                <h5 class="widget-title pb-2">Quick Links</h5>
+                <ul class="menu-list list-unstyled text-capitalize">
+                  <li class="menu-item mb-1"><a href="#">Home</a></li>
+                  <li class="menu-item mb-1"><a href="#">About</a></li>
+                  <li class="menu-item mb-1"><a href="#">Shop</a></li>
+                  <li class="menu-item mb-1"><a href="#">Blogs</a></li>
+                  <li class="menu-item mb-1"><a href="#">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu text-capitalize">
+                <h5 class="widget-title pb-2">Help & Info Help</h5>
+                <ul class="menu-list list-unstyled">
+                  <li class="menu-item mb-1"><a href="#">Track Your Order</a></li>
+                  <li class="menu-item mb-1"><a href="#">Returns Policies</a></li>
+                  <li class="menu-item mb-1"><a href="#">Shipping + Delivery</a></li>
+                  <li class="menu-item mb-1"><a href="#">Contact Us</a></li>
+                  <li class="menu-item mb-1"><a href="#">Faqs</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu contact-item">
+                <h5 class="widget-title text-capitalize pb-2">Contact Us</h5>
+                <p>Do you have any queries or suggestions? <a href="mailto:yourinfo@gmail.com" class="text-decoration-underline">yourinfo@gmail.com</a></p>
+                <p>If you need support? Just give us a call. <a href="#" class="text-decoration-underline">+55 111 222 333 44</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <hr>
+  <div id="footer-bottom" class="mb-2">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between">
+        <div class="copyright">
+          <p>© Copyright 2025 VieBook.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    const currentPage = window.location.pathname.split('/').pop();
+    const pageMap = {
+        'shop.html': 1,
+        'shop-page2.html': 2,
+        'shop-page3.html': 3
+    };
+    const currentPageNumber = pageMap[currentPage] || 1;
+    const pageLinks = document.querySelectorAll('.page-link[data-page]');
+    pageLinks.forEach(link => {
+        const parent = link.parentElement; // Get the parent .page-item
+        if (parseInt(link.getAttribute('data-page')) === currentPageNumber) {
+            parent.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+        } else {
+            parent.classList.remove('active');
+            link.removeAttribute('aria-current');
+        }
+    });
+</script>
+</body>
+</html> 

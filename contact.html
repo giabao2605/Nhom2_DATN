@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - VieBook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .contact-hero {
+      background: linear-gradient(rgba(30,30,60,0.7),rgba(30,30,60,0.7)), url('images/banner-image-bg.jpg') center/cover no-repeat;
+      min-height: 220px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .contact-hero h1 { color: #fff; font-weight: 800; }
+    .contact-hero p { color: #fff; opacity: 0.85; }
+    .contact-form-box {
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 2px 16px rgba(30,30,60,0.07);
+      padding: 2.5rem 2rem;
+    }
+    .contact-form-box label, .contact-form-box input, .contact-form-box textarea { color: #222 !important; }
+    .contact-info-box {
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 2px 16px rgba(30,30,60,0.07);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+    .contact-info-box h5 { color: #F86D72; font-weight: 700; }
+    .contact-info-box p, .contact-info-box a { color: #222; }
+    .map-responsive { overflow:hidden; padding-bottom:56.25%; position:relative; height:0; border-radius: 1.25rem; box-shadow: 0 2px 16px rgba(30,30,60,0.07); }
+    .map-responsive iframe { left:0; top:0; height:100%; width:100%; position:absolute; border-radius: 1.25rem; }
+    @media (max-width: 991px) {
+      .contact-hero { min-height: 120px; }
+      .contact-form-box, .contact-info-box { padding: 1.5rem 1rem; }
+    }
+    /* Đẩy các cột footer sát copyright, giảm khoảng trắng */
+    footer {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    #footer-bottom {
+      margin-top: 0 !important;
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    #footer-bottom .container {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    #footer-bottom .copyright {
+      margin: 0 !important;
+      padding: 0 !important;
+      text-align: center;
+      width: 100%;
+    }
+    .footer .container {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  </style>
+</head>
+<body style="font-family: 'Nunito', sans-serif; background: #f8f8f8;">
+  <!-- Header (copy từ index.html) -->
+  <header id="header" class="site-header">
+    <nav id="header-nav" class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/main-logo.png" class="logo" alt="VieBook logo">
+        </a>
+        <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+          <div class="offcanvas-header px-4 pb-0">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/main-logo.png" class="logo" alt="VieBook logo">
+            </a>
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul id="navbar" class="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
+              <li class="nav-item"><a class="nav-link me-4" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="about.html">About</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="shop.html">Shop</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="blog.html">Blogs</a></li>
+              <li class="nav-item"><a class="nav-link me-4 active" href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="contact-hero mb-4 animate__animated animate__fadeInDown">
+    <div class="container text-center">
+      <h1 class="display-5 mb-2">Contact</h1>
+      <p class="lead mb-0">Liên hệ với VieBook để được hỗ trợ nhanh chóng và tận tâm!</p>
+    </div>
+  </section>
+
+  <div class="container mb-5">
+    <div class="row g-4">
+      <!-- Thông tin liên hệ -->
+      <aside class="col-lg-4 order-2 order-lg-1">
+        <div class="contact-info-box animate__animated animate__fadeInLeft">
+          <h5 class="mb-3">Thông tin liên hệ</h5>
+          <p><strong>Địa chỉ:</strong> 30/2A, Tổ 36 Khu phố 3, Tân Chánh Hiệp, Quận 12, TP.HCM</p>
+          <p><strong>Email:</strong> <a href="mailto:blam12237@gmail.com" class="text-decoration-underline">blam12237@gmail.com</a></p>
+          <p><strong>Hotline:</strong> <a href="tel:+84 363 861 187" class="text-decoration-underline">+84 363 861 187</a></p>
+          <p><strong>Giờ làm việc:</strong> 8:00 - 20:00 (T2 - CN)</p>
+        </div>
+        <div class="map-responsive animate__animated animate__fadeInLeft" style="animation-delay:0.1s;">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.502234833635!2d106.7004233153346!3d10.77637369232247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1c1b6e7e2b%3A0x6e4b7b7b7b7b7b7b!2zMTIzIMSQxrDhu51uZyBT4bqjY2gsIFF14bqtbiAxLCBUUC5IQ00!5e0!3m2!1svi!2s!4v1718270000000!5m2!1svi!2s" width="100%" height="220" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </aside>
+      <!-- Form liên hệ -->
+      <main class="col-lg-8 order-1 order-lg-2">
+        <div class="contact-form-box animate__animated animate__fadeInUp">
+          <h4 class="mb-4 fw-bold">Gửi liên hệ cho VieBook</h4>
+          <form>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="name" class="form-label">Họ và tên</label>
+                <input type="text" class="form-control" id="name" placeholder="Nhập họ tên" required>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Nhập email" required>
+              </div>
+              <div class="col-12">
+                <label for="subject" class="form-label">Chủ đề</label>
+                <input type="text" class="form-control" id="subject" placeholder="Nhập chủ đề liên hệ">
+              </div>
+              <div class="col-12">
+                <label for="message" class="form-label">Nội dung</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Nhập nội dung liên hệ" required></textarea>
+              </div>
+            </div>
+            <div class="mt-4 text-end">
+              <button type="submit" class="btn btn-primary px-5 py-2 mt-2" id="contact-submit-btn">Gửi Liên Hệ</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Footer (copy từ index.html) -->
+  <footer id="footer" class="py-4 bg-white mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="footer-top-area">
+          <div class="row d-flex flex-wrap justify-content-between">
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu">
+                <img src="images/main-logo.png" alt="logo" class="img-fluid mb-2">
+                <p>Kho tri thức đa dạng — nơi bạn tìm được những cuốn sách phù hợp với nhu cầu, sở thích, cũng như đam mê của chính mình.</p>
+                <div class="social-links">
+                  <ul class="d-flex list-unstyled">
+                    <li><a href="#"><svg class="facebook"><use xlink:href="#facebook" /></svg></a></li>
+                    <li><a href="#"><svg class="twitter"><use xlink:href="#twitter" /></svg></a></li>
+                    <li><a href="#"><svg class="linkedin"><use xlink:href="#linkedin" /></svg></a></li>
+                    <li><a href="#"><svg class="youtube"><use xlink:href="#youtube" /></svg></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-6 pb-3">
+              <div class="footer-menu text-capitalize">
+                <h5 class="widget-title pb-2">Quick Links</h5>
+                <ul class="menu-list list-unstyled text-capitalize">
+                  <li class="menu-item mb-1"><a href="#">Home</a></li>
+                  <li class="menu-item mb-1"><a href="#">About</a></li>
+                  <li class="menu-item mb-1"><a href="#">Shop</a></li>
+                  <li class="menu-item mb-1"><a href="#">Blogs</a></li>
+                  <li class="menu-item mb-1"><a href="#">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu text-capitalize">
+                <h5 class="widget-title pb-2">Hỗ trợ & Thông tin</h5>
+                <ul class="menu-list list-unstyled">
+                  <li class="menu-item mb-1"><a href="#">Theo dõi đơn hàng</a></li>
+                  <li class="menu-item mb-1"><a href="#">Chính sách đổi trả</a></li>
+                  <li class="menu-item mb-1"><a href="#">Vận chuyển & Giao hàng</a></li>
+                  <li class="menu-item mb-1"><a href="#">Liên hệ</a></li>
+                  <li class="menu-item mb-1"><a href="#">Câu hỏi thường gặp</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-6 pb-3">
+              <div class="footer-menu contact-item">
+                <h5 class="widget-title text-capitalize pb-2">Liên hệ</h5>
+                <p>Bạn có thắc mắc hoặc góp ý? <a href="mailto:yourinfo@gmail.com" class="text-decoration-underline">yourinfo@gmail.com</a></p>
+                <p>Cần hỗ trợ? Gọi ngay <a href="#" class="text-decoration-underline">+55 111 222 333 44</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <hr>
+  <div id="footer-bottom" class="mb-2">
+    <div class="container">
+      <div class="d-flex flex-wrap justify-content-between">
+        <div class="copyright">
+          <p>© Copyright 2025 VieBook.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Popup gửi thành công -->
+  <div id="contact-success-popup" style="display:none;position:fixed;z-index:9999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:1.5rem;box-shadow:0 8px 32px rgba(30,30,60,0.18);padding:2.5rem 2.5rem 2rem 2.5rem;display:flex;flex-direction:column;align-items:center;max-width:350px;margin:auto;">
+      <div style="margin-bottom:1.2rem;">
+        <svg width="70" height="70">
+          <circle cx="35" cy="35" r="32" fill="#F86D72" opacity="0.12"/>
+          <circle cx="35" cy="35" r="28" fill="#fff"/>
+          <polyline points="25,38 33,46 48,30" style="fill:none;stroke:#F86D72;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;" id="success-tick"/>
+        </svg>
+      </div>
+      <div style="font-size:1.25rem;font-weight:700;color:#F86D72;margin-bottom:0.5rem;">Gửi liên hệ thành công!</div>
+      <div style="color:#888;font-size:1rem;text-align:center;">Cảm ơn bạn đã liên hệ với VieBook.<br>Chúng tôi sẽ phản hồi sớm nhất có thể.</div>
+      <button onclick="closeContactPopup()" style="margin-top:1.5rem;background:#F86D72;color:#fff;border:none;border-radius:2rem;padding:0.5rem 1.5rem;font-weight:700;font-size:1rem;">Đóng</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  // Popup gửi liên hệ thành công
+  function showContactPopup() {
+    const popup = document.getElementById('contact-success-popup');
+    popup.style.display = 'flex';
+    // Animate tick
+    const tick = document.getElementById('success-tick');
+    tick.style.strokeDashoffset = 40;
+    setTimeout(() => { tick.style.transition = 'stroke-dashoffset 0.7s cubic-bezier(.7,1.7,.7,1)'; tick.style.strokeDashoffset = 0; }, 100);
+    // Auto close after 2.5s
+    setTimeout(closeContactPopup, 2500);
+  }
+  function closeContactPopup() {
+    const popup = document.getElementById('contact-success-popup');
+    popup.style.display = 'none';
+  }
+  // Chặn submit form, hiện popup
+  const contactForm = document.querySelector('form');
+  if(contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      showContactPopup();
+      // Optionally: contactForm.reset();
+    });
+  }
+  </script>
+</body>
+</html> 

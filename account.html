@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản lý tài khoản - VieBook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    .account-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(30,30,60,0.13);
+      padding: 2.5rem 2.8rem 2.2rem 2.8rem;
+      font-family: 'Nunito', sans-serif;
+    }
+    .account-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #F86D72;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    .account-info {
+      margin-bottom: 2rem;
+    }
+    .account-info label {
+      font-weight: 600;
+      color: #F86D72;
+    }
+    .account-info .form-control[readonly] {
+      background: #f8f8f8;
+      border: 1.5px solid #ffe8f0;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+    }
+    .logout-btn {
+      width: 100%;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.85rem 0;
+      background: linear-gradient(90deg, #F86D72 60%, #ffb6c1 100%);
+      color: #fff;
+      border: none;
+      margin-top: 1.5rem;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(248,109,114,0.10);
+    }
+    .logout-btn:hover {
+      background: #F86D72;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(248,109,114,0.18);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .change-pass-title {
+      color: #F86D72;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .change-pass-form .form-control {
+      border-radius: 1rem;
+      border: 1.5px solid #ffe8f0;
+      font-size: 1.08rem;
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 1.1rem;
+      background: #f8f8f8;
+      transition: border 0.2s;
+    }
+    .change-pass-form .form-control:focus {
+      border-color: #F86D72;
+      box-shadow: 0 0 0 0.1rem #ffe8f0;
+    }
+    .change-pass-form .btn {
+      width: 100%;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.85rem 0;
+      background: linear-gradient(90deg, #F86D72 60%, #ffb6c1 100%);
+      color: #fff;
+      border: none;
+      margin-top: 0.5rem;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(248,109,114,0.10);
+    }
+    .change-pass-form .btn:hover {
+      background: #F86D72;
+      color: #fff;
+      box-shadow: 0 4px 16px rgba(248,109,114,0.18);
+      transform: translateY(-2px) scale(1.03);
+    }
+  </style>
+</head>
+<body style="background: #f8f8f8;">
+  <!-- Header giống các trang khác -->
+  <header class="py-3 mb-4 border-bottom bg-white shadow-sm">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <a href="index.html" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+        <img src="images/main-logo.png" alt="VieBook logo" width="50" class="me-2">
+        <span class="fs-4 fw-bold" style="color:#F86D72;">VieBook</span>
+      </a>
+      <ul class="nav">
+        <li class="nav-item"><a href="index.html" class="nav-link link-dark">Trang chủ</a></li>
+        <li class="nav-item"><a href="shop.html" class="nav-link link-dark">Cửa hàng</a></li>
+        <li class="nav-item"><a href="cart.html" class="nav-link link-dark">Giỏ hàng</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link link-dark">Giới thiệu</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link link-dark">Liên hệ</a></li>
+      </ul>
+    </div>
+  </header>
+  <div class="account-container">
+    <div class="account-title"><i class="fa fa-user-circle me-2"></i>Quản lý tài khoản</div>
+    <div class="account-info">
+      <label for="acc-name">Họ và tên</label>
+      <input type="text" id="acc-name" class="form-control" value="Normal User" readonly>
+      <label for="acc-email">Email</label>
+      <input type="email" id="acc-email" class="form-control" value="user@booksaw.com" readonly>
+      <label for="acc-phone">Số điện thoại</label>
+      <input type="text" id="acc-phone" class="form-control" value="0987654321" readonly>
+    </div>
+    <div class="change-pass-title">Đổi mật khẩu (giả lập)</div>
+    <form class="change-pass-form" id="changePassForm">
+      <input type="password" class="form-control" id="oldPass" placeholder="Mật khẩu cũ" required>
+      <input type="password" class="form-control" id="newPass" placeholder="Mật khẩu mới" required>
+      <input type="password" class="form-control" id="reNewPass" placeholder="Nhập lại mật khẩu mới" required>
+      <button type="submit" class="btn">Đổi mật khẩu</button>
+      <div id="changePassMsg" class="mt-2"></div>
+    </form>
+    <button class="logout-btn" id="logoutBtn"><i class="fa fa-sign-out-alt me-2"></i>Đăng xuất</button>
+  </div>
+  <script>
+    // Hiển thị thông tin tài khoản từ localStorage nếu có
+    document.addEventListener('DOMContentLoaded', function() {
+      // Nếu chưa đăng nhập thì chuyển về login.html
+      if (!localStorage.getItem('isLoggedIn')) {
+        window.location.href = 'login.html';
+        return;
+      }
+      // Có thể lấy thông tin user từ localStorage nếu muốn mở rộng
+    });
+    // Đăng xuất
+    document.getElementById('logoutBtn').onclick = function() {
+      localStorage.removeItem('isLoggedIn');
+      window.location.href = 'login.html';
+    };
+    // Đổi mật khẩu (giả lập)
+    document.getElementById('changePassForm').onsubmit = function(e) {
+      e.preventDefault();
+      var oldPass = document.getElementById('oldPass').value;
+      var newPass = document.getElementById('newPass').value;
+      var reNewPass = document.getElementById('reNewPass').value;
+      var msg = document.getElementById('changePassMsg');
+      if (oldPass !== 'user123') {
+        msg.innerHTML = '<span class="text-danger">Mật khẩu cũ không đúng!</span>';
+      } else if (newPass.length < 6) {
+        msg.innerHTML = '<span class="text-danger">Mật khẩu mới phải từ 6 ký tự!</span>';
+      } else if (newPass !== reNewPass) {
+        msg.innerHTML = '<span class="text-danger">Nhập lại mật khẩu không khớp!</span>';
+      } else {
+        msg.innerHTML = '<span class="text-success">Đổi mật khẩu thành công (giả lập)!</span>';
+        document.getElementById('changePassForm').reset();
+      }
+    };
+  </script>
+</body>
+</html> 

@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - VieBook</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body { background: linear-gradient(120deg, #f8f8f8 60%, #ffe8f0 100%); }
+    .checkout-progress {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2.5rem;
+    }
+    .checkout-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      color: #bbb;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+    }
+    .checkout-step.active {
+      color: #F86D72;
+    }
+    .checkout-step .circle {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #F86D72;
+      color: #F86D72;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 2px 8px rgba(248,109,114,0.08);
+    }
+    .checkout-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -50%;
+      top: 18px;
+      width: 100%;
+      height: 2px;
+      background: #F86D72;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    .checkout-box {
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 32px rgba(30,30,60,0.10);
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+      border: 1.5px solid #ffe8f0;
+      position: relative;
+      overflow: hidden;
+    }
+    .checkout-title {
+      color: #F86D72;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      letter-spacing: 0.01em;
+    }
+    .form-label i {
+      color: #F86D72;
+      margin-right: 0.5rem;
+    }
+    .form-control, textarea.form-control {
+      border-radius: 1rem;
+      border: 1.5px solid #ffe8f0;
+      box-shadow: none;
+      transition: border 0.2s;
+    }
+    .form-control:focus, textarea.form-control:focus {
+      border-color: #F86D72;
+      box-shadow: 0 0 0 0.1rem #ffe8f0;
+    }
+    .order-summary {
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 2px 16px rgba(30,30,60,0.07);
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+      border: 1.5px solid #ffe8f0;
+    }
+    .order-summary h5 {
+      color: #F86D72;
+      font-weight: 700;
+    }
+    .order-product {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .order-product img {
+      width: 48px; height: 64px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-right: 1rem;
+      border: 1px solid #eee;
+    }
+    .order-product .name {
+      font-weight: 600;
+      color: #222;
+    }
+    .order-product .qty {
+      color: #888;
+      font-size: 0.95rem;
+      margin-left: 0.5rem;
+    }
+    .order-product .price {
+      margin-left: auto;
+      color: #F86D72;
+      font-weight: 700;
+    }
+    .order-summary .total {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #F86D72;
+      letter-spacing: 0.01em;
+    }
+    .payment-method label {
+      font-weight: 500;
+      margin-right: 1.5rem;
+      cursor: pointer;
+    }
+    .btn-checkout {
+      min-width: 180px;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      padding: 0.75rem 0;
+      background: linear-gradient(90deg, #F86D72 60%, #ffb6c1 100%);
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(248,109,114,0.10);
+    }
+    .btn-checkout:hover {
+      background: linear-gradient(90deg, #e0555a 60%, #ffb6c1 100%);
+      box-shadow: 0 4px 16px rgba(248,109,114,0.18);
+    }
+    @media (max-width: 991px) {
+      .checkout-box, .order-summary { padding: 1.5rem 0.7rem; }
+    }
+    @media (max-width: 767px) {
+      .checkout-progress { font-size: 0.95rem; }
+      .checkout-box, .order-summary { padding: 1rem 0.3rem; }
+    }
+    .complete-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 350px;
+      animation: fadeInUp 0.7s;
+    }
+    .checkmark {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #F86D72 60%, #ffb6c1 100%);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 24px rgba(248,109,114,0.18);
+      position: relative;
+    }
+    .checkmark__circle {
+      stroke: #fff;
+      stroke-width: 6;
+      fill: none;
+      stroke-dasharray: 285;
+      stroke-dashoffset: 285;
+      animation: circle-anim 0.7s ease-out forwards;
+    }
+    .checkmark__check {
+      stroke: #fff;
+      stroke-width: 6;
+      fill: none;
+      stroke-linecap: round;
+      stroke-dasharray: 50;
+      stroke-dashoffset: 50;
+      animation: check-anim 0.4s 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+    }
+    @keyframes circle-anim {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes check-anim {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .complete-title {
+      color: #F86D72;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .complete-desc {
+      color: #888;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .btn-back-home {
+      background: #F86D72;
+      color: #fff;
+      border-radius: 2rem;
+      padding: 0.7rem 2.2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      transition: background 0.2s;
+    }
+    .btn-back-home:hover {
+      background: #e0555a;
+    }
+    .checkout-steps {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+      gap: 0.5rem;
+    }
+    .checkout-step {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      cursor: pointer;
+      transition: color 0.2s;
+      z-index: 1;
+    }
+    .checkout-step .circle {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: #f3f3f3;
+      border: 2.5px solid #ffe8f0;
+      color: #bbb;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 0.5rem auto;
+      transition: all 0.3s;
+      box-shadow: 0 2px 8px rgba(248,109,114,0.06);
+    }
+    .checkout-step.active .circle {
+      background: linear-gradient(135deg, #F86D72 60%, #ffb6c1 100%);
+      color: #fff;
+      border-color: #F86D72;
+      box-shadow: 0 4px 16px rgba(248,109,114,0.18);
+      transform: scale(1.08);
+    }
+    .checkout-step.completed .circle {
+      background: #F86D72;
+      color: #fff;
+      border-color: #F86D72;
+    }
+    .checkout-step .step-label {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #bbb;
+      transition: color 0.2s;
+    }
+    .checkout-step.active .step-label {
+      color: #F86D72;
+    }
+    .checkout-step.completed .step-label {
+      color: #F86D72;
+      opacity: 0.8;
+    }
+    .checkout-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -50%;
+      top: 22px;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #F86D72 60%, #ffb6c1 100%);
+      opacity: 0.18;
+      z-index: -1;
+    }
+    .checkout-step.completed:not(:last-child)::after {
+      opacity: 0.7;
+      background: linear-gradient(90deg, #F86D72 60%, #ffb6c1 100%);
+    }
+    .checkout-step:last-child::after { display: none; }
+    .checkout-form-step { display: none; }
+    .checkout-form-step.active { display: block; animation: fadeInUp 0.5s; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .step-btns { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2rem; }
+    .step-btns .btn { min-width: 140px; border-radius: 2rem; font-weight: 700; font-size: 1.05rem; }
+    .step-btns .btn-next { background: linear-gradient(90deg, #F86D72 60%, #ffb6c1 100%); color: #fff; border: none; }
+    .step-btns .btn-next:hover { background: #F86D72; color: #fff; }
+    .step-btns .btn-prev { background: #fff; color: #F86D72; border: 2px solid #F86D72; }
+    .step-btns .btn-prev:hover { background: #ffe8f0; }
+  </style>
+</head>
+<body style="font-family: 'Nunito', sans-serif; background: none;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <!-- Copy toàn bộ symbol từ index.html vào đây -->
+    <symbol id="search" xmlns="http://www.w3.org/2000/symbolsvg" viewBox="0 0 24 24">
+      <path fill="currentColor" fill-rule="evenodd" d="M11.5 2.75a8.75 8.75 0 1 0 0 17.5a8.75 8.75 0 0 0 0-17.5M1.25 11.5c0-5.66 4.59-10.25 10.25-10.25S21.75 5.84 21.75 11.5c0 2.56-.939 4.902-2.491 6.698l3.271 3.272a.75.75 0 1 1-1.06 1.06l-3.272-3.271A10.21 10.21 0 0 1 11.5 21.75c-5.66 0-10.25-4.59-10.25-10.25" clip-rule="evenodd" />
+    </symbol>
+    <symbol id="user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="currentColor" fill-rule="evenodd" d="M12 1.25a4.75 4.75 0 1 0 0 9.5a4.75 4.75 0 0 0 0-9.5M8.75 6a3.25 3.25 0 1 1 6.5 0a3.25 3.25 0 0 1-6.5 0M12 12.25c-2.313 0-4.445.526-6.024 1.414C4.42 14.54 3.25 15.866 3.25 17.5v.102c-.001 1.162-.002 2.62 1.277 3.662c.629.512 1.51.877 2.7 1.117c1.192.242 2.747.369 4.773.369s3.58-.127 4.774-.369c1.19-.24 2.07-.605 2.7-1.117c1.279-1.042 1.277-2.5 1.276-3.662V17.5c0-1.634-1.17-2.96-2.725-3.836c-1.58-.888-3.711-1.414-6.025-1.414M4.75 17.5c0-.851.622-1.775 1.961-2.528c1.316-.74 3.184-1.222 5.29-1.222c2.104 0 3.972.482 5.288 1.222c1.34.753 1.961 1.677 1.961 2.528c0 1.308-.04 2.044-.724 2.6c-.37.302-.99.597-2.05.811c-1.057.214-2.502.339-4.476.339c-1.974 0-3.42-.125-4.476-.339c-1.06-.214-1.68-.509-2.05-.81c-.684-.557-.724-1.293-.724-2.601" clip-rule="evenodd" />
+    </symbol>
+    <symbol id="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="currentColor" fill-rule="evenodd" d="M5.624 4.424C3.965 5.182 2.75 6.986 2.75 9.137c0 2.197.9 3.891 2.188 5.343c1.063 1.196 2.349 2.188 3.603 3.154c.298.23.594.459.885.688c.526.415.995.778 1.448 1.043c.452.264.816.385 1.126.385c.31 0 .674-.12 1.126-.385c.453-.265.922-.628 1.448-1.043c.29-.23.587-.458.885-.687c1.254-.968 2.54-1.959 3.603-3.155c1.289-1.452 2.188-3.146 2.188-5.343c0-2.15-1.215-3.955-2.874-4.713c-1.612-.737-3.778-.542-5.836 1.597a.75.75 0 0 1-1.08 0C9.402 3.882 7.236 3.687 5.624 4.424M12 4.46C9.688 2.39 7.099 2.1 5 3.059C2.786 4.074 1.25 6.426 1.25 9.138c0 2.665 1.11 4.699 2.567 6.339c1.166 1.313 2.593 2.412 3.854 3.382c.286.22.563.434.826.642c.513.404 1.063.834 1.62 1.16c.557.325 1.193.59 1.883.59s1.326-.265 1.883-.59c.558-.326 1.107-.756 1.62-1.16a78.6 78.6 0 0 1 .826-.642c1.26-.97 2.688-2.07 3.854-3.382c1.457-1.64 2.567-3.674 2.567-6.339c0-2.712-1.535-5.064-3.75-6.077c-2.099-.96-4.688-.67-7 1.399" clip-rule="evenodd" />
+    </symbol>
+    <symbol id="cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="currentColor" fill-rule="evenodd" d="M2.249 2.292a.75.75 0 1 0-.498 1.416l.262.091c.667.235 1.106.39 1.429.549c.303.149.437.27.525.398c.09.132.16.314.2.677c.04.38.041.875.041 1.615V9.76c0 1.453.014 2.5.151 3.3c.146.854.438 1.466.985 2.042c.594.627 1.346.9 2.243 1.026c.858.122 1.948.122 3.293.122h5.406c.742 0 1.366 0 1.87-.062c.537-.065 1.025-.209 1.452-.556c.426-.348.665-.797.837-1.309c.163-.482.289-1.093.439-1.82l.508-2.469l.002-.005l.01-.052c.165-.825.303-1.519.338-2.077c.036-.586-.031-1.164-.413-1.66c-.235-.306-.565-.479-.866-.584a4.617 4.617 0 0 0-1.002-.21c-.687-.076-1.522-.076-2.34-.076H5.667a5.932 5.932 0 0 0-.01-.108c-.054-.497-.17-.95-.453-1.362c-.284-.416-.662-.682-1.102-.899c-.412-.202-.936-.386-1.553-.603zm3.46 4.578h11.38c.856 0 1.61.001 2.205.067c.296.034.517.08.672.134a.56.56 0 0 1 .176.086c.062.082.128.23.102.651c-.027.444-.143 1.036-.321 1.926v.002l-.5 2.42c-.16.783-.27 1.303-.399 1.688c-.123.366-.239.523-.364.625c-.125.102-.303.184-.685.23c-.404.05-.935.051-1.734.051h-5.303c-1.417 0-2.4-.002-3.14-.107c-.716-.101-1.093-.285-1.366-.573c-.32-.338-.493-.668-.595-1.263c-.11-.65-.129-1.558-.129-3.047zM7.5 21.75a2.25 2.25 0 1 1 0-4.5a2.25 2.25 0 0 1 0 4.5m-.75-2.25a.75.75 0 1 0 1.5 0a.75.75 0 0 0-1.5 0m9.75 2.25a2.25 2.25 0 1 1 0-4.5a2.25 2.25 0 0 1 0 4.5m-.75-2.25a.75.75 0 1 0 1.5 0a.75.75 0 0 0-1.5 0" clip-rule="evenodd" />
+    </symbol>
+    <!-- ...các symbol khác nếu cần... -->
+  </svg>
+  <div class="search-popup">
+    <div class="search-popup-container">
+      <form role="search" method="get" class="search-form" action="">
+        <input type="search" id="search-form" class="search-field" placeholder="Nhập từ khoá và nhấn Enter" value="" name="s" />
+        <button type="submit" class="search-submit"><svg class="search"><use xlink:href="#search"></use></svg></button>
+      </form>
+      <h5 class="cat-list-title">Browse Categories</h5>
+      <ul class="cat-list">
+        <li class="cat-list-item"><a href="#" title="Romance">Romance</a></li>
+        <li class="cat-list-item"><a href="#" title="Thriller">Thriller</a></li>
+        <li class="cat-list-item"><a href="#" title="Sci-fi">Sci-fi</a></li>
+        <li class="cat-list-item"><a href="#" title="Cooking">Cooking</a></li>
+        <li class="cat-list-item"><a href="#" title="Health">Health</a></li>
+        <li class="cat-list-item"><a href="#" title="Lifestyle">Lifestyle</a></li>
+        <li class="cat-list-item"><a href="#" title="Fiction">Fiction</a></li>
+      </ul>
+    </div>
+  </div>
+  <header id="header" class="site-header">
+    <nav id="header-nav" class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/main-logo.png" class="logo">
+        </a>
+        <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <svg class="navbar-icon"><use xlink:href="#navbar-icon"></use></svg>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+          <div class="offcanvas-header px-4 pb-0">
+            <a class="navbar-brand" href="index.html">
+              <img src="images/main-logo.png" class="logo">
+            </a>
+            <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#bdNavbar"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul id="navbar" class="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
+              <li class="nav-item"><a class="nav-link me-4 active" href="index.html">Home</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="about.html">About</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="shop.html">Shop</a></li>
+              <li class="nav-item"><a class="nav-link me-4" href="blog.html">Blogs</a></li>
+              <li class="nav-item dropdown">
+                <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Pages</a>
+                <ul class="dropdown-menu animate slide border">
+                  <li><a href="about.html" class="dropdown-item fw-light">About</a></li>
+                  <li><a href="shop.html" class="dropdown-item fw-light">Shop</a></li>
+                  <li><a href="single-product.html" class="dropdown-item fw-light">Single Product</a></li>
+                  <li><a href="cart.html" class="dropdown-item fw-light">Cart</a></li>
+                  <li><a href="checkout.html" class="dropdown-item fw-light">Checkout</a></li>
+                  <li><a href="blog.html" class="dropdown-item fw-light">Blog</a></li>
+                  <li><a href="single-post.html" class="dropdown-item fw-light">Single Post</a></li>
+                  <li><a href="contact.html" class="dropdown-item fw-light">Contact</a></li>
+                </ul>
+              </li>
+              <li class="nav-item"><a class="nav-link me-4" href="contact.html">Contact</a></li>
+            </ul>
+            <div class="user-items d-flex">
+              <ul class="d-flex justify-content-end list-unstyled mb-0">
+                <li class="search-item pe-3">
+                  <a href="#" class="search-button"><svg class="search"><use xlink:href="#search"></use></svg></a>
+                </li>
+                <li class="pe-3">
+                  <a href="login.html">
+                    <svg class="user">
+                      <use xlink:href="#user"></use>
+                    </svg>
+                  </a>
+                </li>
+                <li class="cart-dropdown dropdown">
+                  <a href="cart.html" class="dropdown-toggle position-relative" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                    <svg class="cart"><use xlink:href="#cart"></use></svg>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-badge" style="font-size:0.75rem;">2</span>
+                  </a>
+                  <div class="dropdown-menu animate slide dropdown-menu-start dropdown-menu-lg-end p-3">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                      <span class="text-primary">Your cart</span>
+                      <span class="badge bg-primary rounded-pill">2</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                      <li class="list-group-item bg-transparent d-flex lh-sm">
+                        <img src="images/product-item1.png" class="cart-item-img" alt="Secrets of the Alchemist">
+                        <div class="flex-grow-1">
+                          <div class="cart-item-title">Secrets of the Alchemist</div>
+                          <div class="cart-item-desc">High quality in good price.</div>
+                        </div>
+                        <span class="cart-item-price">$870</span>
+                      </li>
+                      <li class="list-group-item bg-transparent d-flex lh-sm">
+                        <img src="images/product-item2.png" class="cart-item-img" alt="Quest for the Lost City">
+                        <div class="flex-grow-1">
+                          <div class="cart-item-title">Quest for the Lost City</div>
+                          <div class="cart-item-desc">Professional Quest for the Lost City.</div>
+                        </div>
+                        <span class="cart-item-price">$600</span>
+                      </li>
+                      <li class="list-group-item bg-transparent d-flex justify-content-between">
+                        <span class="text-capitalize"><b>Total (USD)</b></span>
+                        <strong>$1470</strong>
+                      </li>
+                    </ul>
+                    <div class="d-flex flex-wrap justify-content-center">
+                      <a href="cart.html" class="w-100 btn btn-dark mb-1" type="submit">View Cart</a>
+                      <a href="checkout.html" class="w-100 btn btn-primary" type="submit">Go to checkout</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <div class="checkout-steps mb-4">
+    <div class="checkout-step" id="step-0">
+      <div class="circle"><i class="fa fa-user"></i></div>
+      <div class="step-label">Thông tin</div>
+    </div>
+    <div class="checkout-step" id="step-1">
+      <div class="circle"><i class="fa fa-truck"></i></div>
+      <div class="step-label">Giao hàng</div>
+    </div>
+    <div class="checkout-step" id="step-2">
+      <div class="circle"><i class="fa fa-credit-card"></i></div>
+      <div class="step-label">Thanh toán</div>
+    </div>
+    <div class="checkout-step" id="step-3">
+      <div class="circle"><i class="fa fa-check"></i></div>
+      <div class="step-label">Hoàn tất</div>
+    </div>
+  </div>
+  <div class="container mb-5">
+    <div class="row g-4">
+      <main class="col-lg-7">
+        <!-- Bước 1: Thông tin khách hàng -->
+        <form class="checkout-form-step active" id="form-step-0" autocomplete="off">
+          <h2 class="checkout-title">Thông Tin Khách Hàng</h2>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-user"></i>Họ và tên</label><input type="text" class="form-control" name="fullname" placeholder="Nhập họ và tên" required></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-phone"></i>Số điện thoại</label><input type="tel" class="form-control" name="phone" placeholder="Nhập số điện thoại" required></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-envelope"></i>Email</label><input type="email" class="form-control" name="email" placeholder="Nhập email" required></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-location-dot"></i>Địa chỉ giao hàng</label><input type="text" class="form-control" name="address" placeholder="Nhập địa chỉ giao hàng" required></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-note-sticky"></i>Ghi chú (tuỳ chọn)</label><textarea class="form-control" name="note" rows="2" placeholder="Ghi chú cho đơn hàng..."></textarea></div>
+          <div class="step-btns"><button type="button" class="btn btn-next">Tiếp tục <i class="fa fa-arrow-right ms-2"></i></button></div>
+        </form>
+        <!-- Bước 2: Giao hàng -->
+        <form class="checkout-form-step" id="form-step-1" autocomplete="off">
+          <h2 class="checkout-title">Giao Hàng</h2>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-truck"></i>Phương thức vận chuyển</label>
+            <select class="form-control" name="shipping_method" required>
+              <option value="Nhanh">Nhanh (1-2 ngày)</option>
+              <option value="Chuan">Chuẩn (3-5 ngày)</option>
+            </select>
+          </div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-clock"></i>Thời gian giao dự kiến</label><input type="text" class="form-control" name="shipping_time" placeholder="Ví dụ: 15/06/2025 - 17/06/2025" required></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-money-bill"></i>Chi phí vận chuyển</label><input type="text" class="form-control" name="shipping_fee" required></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-building"></i>Nhà vận chuyển</label><input type="text" class="form-control" name="shipping_company" required></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-phone"></i>Số liên lạc nhà vận chuyển</label><input type="text" class="form-control" name="shipping_contact"></div>
+          <div class="step-btns"><button type="button" class="btn btn-prev"><i class="fa fa-arrow-left me-2"></i>Quay lại</button><button type="button" class="btn btn-next">Tiếp tục <i class="fa fa-arrow-right ms-2"></i></button></div>
+        </form>
+        <!-- Bước 3: Thanh toán -->
+        <form class="checkout-form-step" id="form-step-2" autocomplete="off">
+          <h2 class="checkout-title">Thanh Toán</h2>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-money-bill"></i>Phương thức thanh toán</label>
+            <select class="form-control" name="payment_method" id="payment-method-select" required>
+              <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+              <option value="bank">Chuyển khoản ngân hàng</option>
+              <option value="card">Thẻ tín dụng/Ghi nợ</option>
+              <option value="e-wallet">Ví điện tử</option>
+            </select>
+          </div>
+          <!-- Nội dung động theo phương thức thanh toán -->
+          <div id="payment-cod" class="payment-method-detail" style="display:none">
+            <div class="alert alert-info mt-2"><i class="fa fa-box"></i> Bạn sẽ thanh toán khi nhận hàng (COD).</div>
+          </div>
+          <div id="payment-bank" class="payment-method-detail" style="display:none">
+            <div class="alert alert-warning mt-2">
+              <b>Chuyển khoản đến tài khoản sau:</b><br>
+              <span>Ngân hàng: <b>Vietcombank</b></span><br>
+              <span>Số tài khoản: <b>0123456789</b> <button type="button" class="btn btn-sm btn-light py-0 px-2" onclick="navigator.clipboard.writeText('0123456789')">Copy</button></span><br>
+              <span>Chủ tài khoản: <b>NGUYEN VAN A</b></span><br>
+              <span>Nội dung chuyển khoản: <b>Thanh toan don hang VieBook</b></span>
+            </div>
+          </div>
+          <div id="payment-card" class="payment-method-detail" style="display:none">
+            <div class="row g-2">
+              <div class="col-md-6 mb-2"><input type="text" class="form-control" name="card_number" placeholder="Số thẻ (16 số)"></div>
+              <div class="col-md-6 mb-2"><input type="text" class="form-control" name="card_name" placeholder="Tên chủ thẻ"></div>
+              <div class="col-md-6 mb-2"><input type="text" class="form-control" name="card_expiry" placeholder="MM/YY"></div>
+              <div class="col-md-6 mb-2"><input type="text" class="form-control" name="card_cvv" placeholder="CVV"></div>
+            </div>
+          </div>
+          <div id="payment-ewallet" class="payment-method-detail" style="display:none">
+            <div class="mb-2">
+              <label class="form-label">Chọn nền tảng ví điện tử</label>
+              <select class="form-control" name="ewallet_platform" id="ewallet-platform-select">
+                <option value="momo">Momo</option>
+                <option value="zalopay">ZaloPay</option>
+                <option value="shopeepay">ShopeePay</option>
+                <option value="viettelmoney">Viettel Money</option>
+              </select>
+            </div>
+            <div id="ewallet-instruction" class="alert alert-success">
+              Vui lòng quét mã QR hoặc chuyển tiền đến số điện thoại <b>0912 345 678</b> trên nền tảng bạn chọn.<br>
+              (Mã QR sẽ hiển thị ở bước xác nhận hoặc gửi qua email/sms)
+            </div>
+          </div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-credit-card"></i>Thông tin tài chính</label><input type="text" class="form-control" name="payment_info" placeholder="Số tài khoản/thẻ hoặc thông tin ví điện tử"></div>
+          <div class="mb-3"><label class="form-label"><i class="fa fa-money-bill-wave"></i>Tổng số tiền cần thanh toán</label><input type="text" class="form-control" name="total_amount" required></div>
+          <div class="step-btns"><button type="button" class="btn btn-prev"><i class="fa fa-arrow-left me-2"></i>Quay lại</button><button type="button" class="btn btn-next">Hoàn tất <i class="fa fa-check ms-2"></i></button></div>
+        </form>
+        <!-- Bước 4: Hoàn tất -->
+        <div class="checkout-form-step" id="form-step-3" autocomplete="off">
+          <div class="complete-step">
+            <div class="checkmark">
+              <svg width="70" height="70">
+                <circle class="checkmark__circle" cx="35" cy="35" r="30"/>
+                <polyline class="checkmark__check" points="22,38 32,48 50,28"/>
+              </svg>
+            </div>
+            <div class="complete-title">Đặt hàng thành công!</div>
+            <div class="complete-desc">
+              Mã đơn hàng: <span id="order-id" style="font-weight:700;color:#F86D72"></span><br>
+              Thời gian hoàn thành: <span id="order-time"></span><br>
+              Cảm ơn bạn đã đặt hàng tại VieBook! Chúng tôi sẽ liên hệ xác nhận và giao hàng sớm nhất.<br>
+              <a href="#" id="order-track-link">Kiểm tra/tracking đơn hàng</a>
+            </div>
+            <a href="index.html" class="btn btn-back-home mt-2"><i class="fa fa-arrow-left me-2"></i>Về trang chủ</a>
+          </div>
+        </div>
+      </main>
+      <aside class="col-lg-5">
+        <div class="order-summary animate__animated animate__fadeInRight">
+          <h5 class="mb-3">Tóm tắt đơn hàng</h5>
+          <div class="order-product">
+            <img src="images/product-item1.png" alt="Đắc Nhân Tâm">
+            <div class="name">Đắc Nhân Tâm <span class="qty">x1</span></div>
+            <div class="price">120.000đ</div>
+          </div>
+          <div class="order-product">
+            <img src="images/product-item2.png" alt="Nhà Giả Kim">
+            <div class="name">Nhà Giả Kim <span class="qty">x1</span></div>
+            <div class="price">98.000đ</div>
+          </div>
+          <div class="d-flex justify-content-between mb-2 mt-3">
+            <span>Phí vận chuyển</span>
+            <span>30.000đ</span>
+          </div>
+          <hr>
+          <div class="d-flex justify-content-between mb-3 total align-items-center">
+            <span>Tổng cộng</span>
+            <span><i class="fa fa-money-bill-wave me-1"></i>248.000đ</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <footer class="text-center py-4 bg-white border-top">
+    <div class="container">
+      <p class="mb-0">© 2025 VieBook. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Lưu dữ liệu các bước vào biến
+    let checkoutData = [{}, {}, {}];
+    let currentStep = 0;
+    const totalSteps = 4;
+    function showStep(step) {
+      document.querySelectorAll('.checkout-form-step').forEach((el, idx) => {
+        el.classList.toggle('active', idx === step);
+      });
+      document.querySelectorAll('.checkout-step').forEach((el, idx) => {
+        el.classList.toggle('active', idx === step);
+        el.classList.toggle('completed', idx < step);
+      });
+      currentStep = step;
+    }
+    function saveStepData(step) {
+      const form = document.getElementById('form-step-' + step);
+      if (!form) return;
+      const data = {};
+      Array.from(form.elements).forEach(input => {
+        if (input.name) data[input.name] = input.value;
+      });
+      checkoutData[step] = data;
+    }
+    function fillStepData(step) {
+      const form = document.getElementById('form-step-' + step);
+      if (!form) return;
+      const data = checkoutData[step] || {};
+      Array.from(form.elements).forEach(input => {
+        if (input.name && data[input.name] !== undefined) input.value = data[input.name];
+      });
+    }
+    // Next/Prev button logic
+    document.querySelectorAll('.btn-next').forEach((btn, idx) => {
+      btn.onclick = function() {
+        saveStepData(currentStep);
+        if (currentStep < totalSteps - 1) {
+          showStep(currentStep + 1);
+          fillStepData(currentStep);
+          if (currentStep === 3) {
+            // Sinh mã đơn hàng và thời gian hoàn thành
+            document.getElementById('order-id').textContent = 'VB' + Math.floor(Math.random()*900000+100000);
+            document.getElementById('order-time').textContent = new Date().toLocaleString();
+            document.getElementById('order-track-link').href = '#';
+          }
+        }
+      }
+    });
+    document.querySelectorAll('.btn-prev').forEach((btn, idx) => {
+      btn.onclick = function() {
+        saveStepData(currentStep);
+        if (currentStep > 0) {
+          showStep(currentStep - 1);
+          fillStepData(currentStep);
+        }
+      }
+    });
+    // Cho phép click vào các bước trước để quay lại
+    document.querySelectorAll('.checkout-step').forEach((stepEl, idx) => {
+      stepEl.onclick = function() {
+        if (idx < currentStep) {
+          saveStepData(currentStep);
+          showStep(idx);
+          fillStepData(idx);
+        }
+      }
+    });
+    // Hiển thị nội dung phù hợp với phương thức thanh toán
+    function showPaymentDetail() {
+      const val = document.getElementById('payment-method-select').value;
+      document.querySelectorAll('.payment-method-detail').forEach(el => el.style.display = 'none');
+      if(val === 'cod') document.getElementById('payment-cod').style.display = 'block';
+      if(val === 'bank') document.getElementById('payment-bank').style.display = 'block';
+      if(val === 'card') document.getElementById('payment-card').style.display = 'block';
+      if(val === 'e-wallet') document.getElementById('payment-ewallet').style.display = 'block';
+    }
+    document.getElementById('payment-method-select').addEventListener('change', showPaymentDetail);
+    // Gọi khi chuyển bước tới bước thanh toán
+    function onStepChange(step) {
+      if(step === 2) showPaymentDetail();
+    }
+    // Sửa lại showStep để gọi onStepChange
+    function showStep(step) {
+      document.querySelectorAll('.checkout-form-step').forEach((el, idx) => {
+        el.classList.toggle('active', idx === step);
+      });
+      document.querySelectorAll('.checkout-step').forEach((el, idx) => {
+        el.classList.toggle('active', idx === step);
+        el.classList.toggle('completed', idx < step);
+      });
+      currentStep = step;
+      onStepChange(step);
+    }
+    // Khởi tạo
+    showStep(0);
+    fillStepData(0);
+  </script>
+</body>
+</html> 
